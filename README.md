@@ -185,16 +185,28 @@ Job-Portal-Django/
 <summary>Click to view screenshots</summary>
 
 ### Home Page
-![Home Page](https://raw.github.com/Manikanta1239/Job-Portal-Django/master/screenshots/home.png)
+![Home Page](https://github.com/Manikanta1239/Job-Portal-Django/raw/main/screenshots/Home.png)
 
-### Job Search
-![Job Search](https://raw.github.com/Manikanta1239/Job-Portal-Django/master/screenshots/job_search.png)
+### Jobs List
+![Jobs List](https://github.com/Manikanta1239/Job-Portal-Django/raw/main/screenshots/jobs.png)
 
 ### Job Details
-![Job Details](https://raw.github.com/Manikanta1239/Job-Portal-Django/master/screenshots/job_details.png)
+![Job Details](https://github.com/Manikanta1239/Job-Portal-Django/raw/main/screenshots/job.png)
 
-### Employer Dashboard
-![Employer Dashboard](https://raw.github.com/Manikanta1239/Job-Portal-Django/master/screenshots/employer_dashboard.png)
+### Job Creation
+![Job Creation](https://github.com/Manikanta1239/Job-Portal-Django/raw/main/screenshots/job-create.png)
+
+### Dashboard
+![Dashboard](https://github.com/Manikanta1239/Job-Portal-Django/raw/main/screenshots/dashboard.png)
+
+### Employer Job Dashboard
+![Employer Job Dashboard](https://github.com/Manikanta1239/Job-Portal-Django/raw/main/screenshots/dashboard-employer-job.png)
+
+### Applicants View
+![Applicants View](https://github.com/Manikanta1239/Job-Portal-Django/raw/main/screenshots/Applicants.png)
+
+### Alternative Dashboard View
+![Alternative Dashboard View](https://github.com/Manikanta1239/Job-Portal-Django/raw/main/screenshots/DashBoard_2.png)
 
 </details>
 
@@ -209,7 +221,7 @@ Job-Portal-Django/
 
 ## 📝 License
 
-This project is open-source and available under the MIT License.
+This project is open-source and available under the [MIT License](LICENSE).
 
 ## 🤝 Contributing
 

@@ -5,86 +5,106 @@ A full-featured job portal application built with Django that connects job seeke
 ## 📚 Detailed Overview
 
 ### For Job Seekers
-- Create your professional profile
+- Create your professional profile with details including education, experience, and skills
 - Upload resume (Supported formats: PDF, DOC, DOCX)
 - Search jobs by:
   - Keywords
   - Location
-  - Job Type (Full-time, Part-time, Remote)
+  - Job Type (Full-time, Part-time, Remote, Internship, Freelance)
   - Experience Level
 - Track application status (Applied, Under Review, Accepted, Rejected)
-- Receive email notifications for application updates
+- Receive email notifications for application updates and job recommendations
 
 ### For Employers
-- Company profile management
+- Company profile management with logo, description, and website
 - Post unlimited job listings with details:
+  - Job title
   - Job description
   - Required skills
   - Salary range
-  - Location options
-- Review candidate applications
+  - Location options (On-site, Remote, Hybrid)
+  - Application deadline
+- Review candidate applications with filters
 - Download candidate resumes
-- Track applicant statistics
+- Track applicant statistics including number of applicants per job
 
 ## ✨ Features
 
-- User authentication (Job Seeker & Employer)
-- Job posting and management
-- Job applications tracking
-- Job search and filtering
-- User dashboard
-- Responsive design
-- Email notifications
+- User authentication (Job Seeker & Employer registration, login, logout, password reset)
+- Job posting and management system for employers
+- Job applications tracking for job seekers
+- Advanced job search and filtering system
+- User dashboard for both job seekers and employers
+- Responsive and mobile-friendly design
+- Email notifications for application updates and job alerts
+- Admin panel for site management
 
 ## 🔍 Detailed Setup Guide
 
 ### Prerequisites Explained
+
 1. **Python 3.8+**
-   - Download from python.org
-   - Verify installation: `python --version`
+   - Download Python from [python.org](https://www.python.org/)
+   - Verify installation:
+     ```bash
+     python --version
+     ```
 
 2. **pip (Python Package Manager)**
-   - Should be included with Python
-   - Verify installation: `pip --version`
+   - Should be included with Python installation
+   - Verify installation:
+     ```bash
+     pip --version
+     ```
 
 3. **Virtual Environment**
-   - Keeps project dependencies isolated
-   - Prevents conflicts between projects
+   - Keeps project dependencies isolated and prevents conflicts between projects
+   - Create a virtual environment:
+     ```bash
+     python -m venv venv
+     ```
+   - Activate virtual environment:
+     - **Windows:**
+       ```bash
+       venv\Scripts\activate
+       ```
+     - **Linux/Mac:**
+       ```bash
+       source venv/bin/activate
+       ```
+   - Verify virtual environment is active:
+     ```bash
+     which python  # Should point to venv directory
+     ```
 
 ### Step-by-Step Installation
 
-1. **Project Setup**
+#### 1. Clone the Repository
 ```bash
-# Clone repository
 git clone https://github.com/Manikanta1239/Job-Portal-Django.git
 cd Job-Portal-Django
+```
 
-# Create virtual environment
-python -m venv venv
-
-# Activate virtual environment
-# Windows:
-venv\Scripts\activate
-# Linux/Mac:
-source venv/bin/activate
-
-# Install dependencies
+#### 2. Install Dependencies
+```bash
 pip install -r requirements.txt
 ```
 
-2. **Database Configuration**
-```python
-# settings.py configuration options:
+#### 3. Configure Database
+Edit `settings.py` to set up the database:
 
-# For SQLite (Default)
+- **For SQLite (Default & Easy for Development)**
+```python
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+```
 
-# For PostgreSQL (Recommended for production)
+- **For PostgreSQL (Recommended for Production)**
+```python
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -97,33 +117,39 @@ DATABASES = {
 }
 ```
 
-### Common Issues & Solutions
+#### 4. Apply Migrations
+Migrations are Django’s way of propagating changes you make to your models (such as adding a new field) into your database schema. This step ensures that the database structure aligns with your models.
 
-1. **Database Migration Issues**
+- Create migration files based on model changes:
+  ```bash
+  python manage.py makemigrations
+  ```
+  This command generates migration files inside the `migrations/` directory of each app.
+
+- Apply the migrations to the database:
+  ```bash
+  python manage.py migrate
+  ```
+  This updates the actual database schema according to the latest migration files.
+
+- If you encounter issues, try:
+  ```bash
+  python manage.py migrate --fake-initial
+  ```
+  This is useful when applying migrations to an existing database that already contains tables.
+
+#### 5. Create Superuser (For Admin Panel Access)
 ```bash
-# Reset migrations
-python manage.py migrate --fake
-python manage.py makemigrations
-python manage.py migrate --fake-initial
-
-# If database is corrupted
-rm db.sqlite3
-python manage.py migrate
+python manage.py createsuperuser
 ```
+Provide email, username, and password when prompted.
 
-2. **Static Files Issues**
+#### 6. Run the Development Server
 ```bash
-# Force collect static files
-python manage.py collectstatic --noinput --clear
+python manage.py runserver
 ```
-
-3. **Virtual Environment Problems**
-```bash
-# If venv is not working
-deactivate  # If already in a venv
-rm -rf venv
-python -m venv venv
-```
+- Access the site at: `http://127.0.0.1:8000/`
+- Admin panel: `http://127.0.0.1:8000/admin`
 
 ## 🔧 Development Workflow
 
@@ -132,24 +158,25 @@ python -m venv venv
 python manage.py test
 ```
 
-2. **Creating Admin User**
+2. **Managing Static Files**
 ```bash
-python manage.py createsuperuser
+python manage.py collectstatic --noinput --clear
 ```
 
-3. **Accessing Admin Panel**
-- Go to: http://127.0.0.1:8000/admin
-- Login with superuser credentials
+3. **Deploying to Production**
+   - Use Gunicorn and Nginx for a production setup
+   - Use PostgreSQL instead of SQLite
+   - Enable HTTPS with an SSL certificate
 
 ## 📋 Project Structure
 ```
 Job-Portal-Django/
-├── accounts/          # User authentication
+├── accounts/          # User authentication (Job Seekers & Employers)
 ├── jobs/              # Job listings and applications
 ├── static/            # CSS, JavaScript, Images
 ├── templates/         # HTML templates
-├── media/            # User uploaded files
-└── manage.py         # Django management script
+├── media/             # User uploaded files (Resumes, Profile Pictures)
+└── manage.py          # Django management script
 ```
 
 ## 🖼️ Screenshots
@@ -158,22 +185,16 @@ Job-Portal-Django/
 <summary>Click to view screenshots</summary>
 
 ### Home Page
-![Home Page](https://raw.github.com/Sany07/Django-Job-Portal/master/screenshots/screencapture-127-0-0-1-8000-2020-05-08-17_03_46.png)
+![Home Page](https://raw.github.com/Manikanta1239/Job-Portal-Django/master/screenshots/home.png)
 
-### Jobs List
-![Jobs List](https://raw.github.com/Sany07/Django-Job-Portal/master/screenshots/screencapture-127-0-0-1-8000-jobs-2020-05-08-17_40_01.png)
+### Job Search
+![Job Search](https://raw.github.com/Manikanta1239/Job-Portal-Django/master/screenshots/job_search.png)
 
 ### Job Details
-![Job Details](https://raw.github.com/Sany07/Django-Job-Portal/master/screenshots/screencapture-127-0-0-1-8000-job-79-2020-05-08-16_59_55.png)
+![Job Details](https://raw.github.com/Manikanta1239/Job-Portal-Django/master/screenshots/job_details.png)
 
-### Job Creation
-![Job Creation](https://raw.github.com/Sany07/Django-Job-Portal/master/screenshots/screencapture-127-0-0-1-8000-job-create-2020-05-08-17_00_46.png)
-
-### Dashboard
-![Dashboard](https://raw.github.com/Sany07/Django-Job-Portal/master/screenshots/screencapture-127-0-0-1-8000-dashboard-2020-05-08-17_01_07.png)
-
-### Applicants View
-![Applicants](https://raw.github.com/Sany07/Django-Job-Portal/master/screenshots/screencapture-127-0-0-1-8000-dashboard-employer-job-54-applicants-2020-05-08-17_01_34.png)
+### Employer Dashboard
+![Employer Dashboard](https://raw.github.com/Manikanta1239/Job-Portal-Django/master/screenshots/employer_dashboard.png)
 
 </details>
 
@@ -192,7 +213,7 @@ This project is open-source and available under the MIT License.
 
 ## 🤝 Contributing
 
-Contributions, issues, and feature requests are welcome! Feel free to check [issues page](https://github.com/Manikanta1239/Job-Portal-Django/issues).
+Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/Manikanta1239/Job-Portal-Django/issues).
 
 ---
 
